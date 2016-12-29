@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AffineCipher
 {
@@ -12,19 +8,19 @@ namespace AffineCipher
         {
             AffineCipher ac = new AffineCipher();
 
-            
+            Console.Write("Nhap chuoi can ma hoa: ");
 
-            string raw = "HOai";
+            string data;
 
-            string result;
+            data = Console.ReadLine();
 
-            result = ac.Encrypt(raw);
+            string encrypt = ac.Encrypt(data);
 
-            Console.WriteLine(result);
+            Console.WriteLine("Chuoi da ma hoa: {0}", encrypt);
 
-            result = ac.Decrypt(result);
+            string decrypt = ac.Decrypt(encrypt);
 
-            Console.WriteLine(result);
+            Console.WriteLine("Chuoi da giai ma: {0}", decrypt);
 
             Console.ReadKey();
         }

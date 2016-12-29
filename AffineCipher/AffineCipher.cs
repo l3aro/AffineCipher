@@ -40,13 +40,9 @@ namespace AffineCipher
                     isContinueRandom = false;
             }
 
-            a = 3;
-
             a1 = inverseTable[a];
 
             b = (byte)rnd.Next(1, 26);
-
-            b = 9;
         }
         
         public byte Get_a()
