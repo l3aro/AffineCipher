@@ -39,9 +39,14 @@ namespace AffineCipher
                 if (inverseTable.ContainsKey(a))
                     isContinueRandom = false;
             }
+
+            a = 3;
+
             a1 = inverseTable[a];
 
-            b = (byte)rnd.Next(1, 26);   
+            b = (byte)rnd.Next(1, 26);
+
+            b = 9;
         }
         
         public byte Get_a()
@@ -57,6 +62,30 @@ namespace AffineCipher
         public byte Get_b()
         {
             return b;
+        }
+
+        public string Encrypt(string raw)
+        {
+            raw = raw.ToUpper(); //chane text to upper case
+
+            // bind string into an array of bytes
+            byte[] toAlphabetNumber = Encoding.ASCII.GetBytes(raw);
+
+            for (int index = 0; index < toAlphabetNumber.Length; index++)
+            {
+                byte token = (byte)(toAlphabetNumber[index] - 65); // minus by 65 to back to Alphabet code context
+
+                token = (byte)((a * token +b) % 26);
+
+                token += 65; // plus by 65 to back to ASCII character
+
+                toAlphabetNumber[index] = token;
+            }
+
+            // bind array into a string
+            string result = Encoding.ASCII.GetString(toAlphabetNumber);
+
+            return result;
         }
     }
 }

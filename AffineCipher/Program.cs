@@ -14,11 +14,13 @@ namespace AffineCipher
 
             Console.ReadKey();
 
-            byte temp;
-            temp = ac.Get_a();
-            temp = ac.Get_a1();
-            temp = ac.Get_b();
+            string raw = "HOai";
 
+            string result;
+
+            result = ac.Encrypt(raw);
+
+            Console.WriteLine(result);
 
             Console.ReadKey();
         }
