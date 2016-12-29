@@ -66,7 +66,7 @@ namespace AffineCipher
 
         public string Encrypt(string raw)
         {
-            raw = raw.ToUpper(); //chane text to upper case
+            raw = raw.ToUpper(); //change text to upper case
 
             // bind string into an array of bytes
             byte[] toAlphabetNumber = Encoding.ASCII.GetBytes(raw);
@@ -83,6 +83,33 @@ namespace AffineCipher
             }
 
             // bind array into a string
+            string result = Encoding.ASCII.GetString(toAlphabetNumber);
+
+            return result;
+        }
+
+        public string Decrypt(string input)
+        {
+            input = input.ToUpper();
+
+            byte[] toAlphabetNumber = Encoding.ASCII.GetBytes(input);
+
+            for (int index = 0; index < toAlphabetNumber.Length; index++)
+            {
+                int token = (toAlphabetNumber[index] - 65); // minus by 65 to back to Alphabet code context
+
+                token = ((token - b) * a1 % 26);
+
+                if (token < 0)
+                {
+                    token = 26 + token;
+                }
+
+                token += 65; // plus by 65 to back to ASCII character
+
+                toAlphabetNumber[index] = (byte)token;
+            }
+
             string result = Encoding.ASCII.GetString(toAlphabetNumber);
 
             return result;

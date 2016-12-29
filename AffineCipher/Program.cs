@@ -12,13 +12,17 @@ namespace AffineCipher
         {
             AffineCipher ac = new AffineCipher();
 
-            Console.ReadKey();
+            
 
             string raw = "HOai";
 
             string result;
 
             result = ac.Encrypt(raw);
+
+            Console.WriteLine(result);
+
+            result = ac.Decrypt(result);
 
             Console.WriteLine(result);
 
