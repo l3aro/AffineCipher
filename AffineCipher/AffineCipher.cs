@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AffineCipher
 {
@@ -60,12 +58,12 @@ namespace AffineCipher
             return b;
         }
 
-        public string Encrypt(string raw)
+        public string Encrypt(string plaintext)
         {
-            raw = raw.ToUpper(); //change text to upper case
+            plaintext = plaintext.ToUpper(); //change text to upper case
 
             // bind string into an array of bytes
-            byte[] toAlphabetNumber = Encoding.ASCII.GetBytes(raw);
+            byte[] toAlphabetNumber = Encoding.ASCII.GetBytes(plaintext);
 
             for (int index = 0; index < toAlphabetNumber.Length; index++)
             {
@@ -89,11 +87,11 @@ namespace AffineCipher
             return result;
         }
 
-        public string Decrypt(string input)
+        public string Decrypt(string encrypted)
         {
-            input = input.ToUpper();
+            encrypted = encrypted.ToUpper();
 
-            byte[] toAlphabetNumber = Encoding.ASCII.GetBytes(input);
+            byte[] toAlphabetNumber = Encoding.ASCII.GetBytes(encrypted);
 
             for (int index = 0; index < toAlphabetNumber.Length; index++)
             {
