@@ -69,6 +69,11 @@ namespace AffineCipher
 
             for (int index = 0; index < toAlphabetNumber.Length; index++)
             {
+                if (toAlphabetNumber[index] == 32)
+                {
+                    continue;
+                }
+
                 byte token = (byte)(toAlphabetNumber[index] - 65); // minus by 65 to back to Alphabet code context
 
                 token = (byte)((a * token +b) % 26);
@@ -92,6 +97,11 @@ namespace AffineCipher
 
             for (int index = 0; index < toAlphabetNumber.Length; index++)
             {
+                if (toAlphabetNumber[index] == 32)
+                {
+                    continue;
+                }
+
                 int token = (toAlphabetNumber[index] - 65); // minus by 65 to back to Alphabet code context
 
                 token = ((token - b) * a1 % 26);

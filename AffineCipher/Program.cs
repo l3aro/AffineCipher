@@ -6,7 +6,7 @@ namespace AffineCipher
     {
         static void Main(string[] args)
         {
-            AffineCipher ac = new AffineCipher();
+            AffineCipher AffineCipher = new AffineCipher();
 
             Console.Write("Nhap chuoi can ma hoa: ");
 
@@ -14,11 +14,11 @@ namespace AffineCipher
 
             data = Console.ReadLine();
 
-            string encrypt = ac.Encrypt(data);
+            string encrypt = AffineCipher.Encrypt(data);
 
             Console.WriteLine("Chuoi da ma hoa: {0}", encrypt);
 
-            string decrypt = ac.Decrypt(encrypt);
+            string decrypt = AffineCipher.Decrypt(encrypt);
 
             Console.WriteLine("Chuoi da giai ma: {0}", decrypt);
 
