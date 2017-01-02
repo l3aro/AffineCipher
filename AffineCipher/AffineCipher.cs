@@ -58,20 +58,42 @@ namespace AffineCipher
             return b;
         }
 
+        // Remove characters not in Z26 alphabet
+        public string RemoveNonZ26(string raw)
+        {
+            raw = raw.ToUpper();
+            do
+            {
+                int i = 0;
+                for (; i < raw.Length; i++)
+                {
+                    int ch = (int)raw[i];
+                    if (ch < 65 || ch > 90)
+                    {
+                        raw = raw.Remove(i, 1);
+                        break;
+                    }
+                }
+                if (i == raw.Length)
+                {
+                    break;
+                }
+            }
+            while (true);
+
+            return raw;
+
+        }
+
         public string Encrypt(string plaintext)
         {
-            plaintext = plaintext.ToUpper(); //change text to upper case
+            plaintext = RemoveNonZ26(plaintext);
 
             // bind string into an array of bytes
             byte[] toAlphabetNumber = Encoding.ASCII.GetBytes(plaintext);
 
             for (int index = 0; index < toAlphabetNumber.Length; index++)
             {
-                if (toAlphabetNumber[index] == 32)
-                {
-                    continue;
-                }
-
                 byte token = (byte)(toAlphabetNumber[index] - 65); // minus by 65 to back to Alphabet code context
 
                 token = (byte)((a * token +b) % 26);
@@ -89,17 +111,12 @@ namespace AffineCipher
 
         public string Decrypt(string encrypted)
         {
-            encrypted = encrypted.ToUpper();
+            encrypted = RemoveNonZ26(encrypted);
 
             byte[] toAlphabetNumber = Encoding.ASCII.GetBytes(encrypted);
 
             for (int index = 0; index < toAlphabetNumber.Length; index++)
             {
-                if (toAlphabetNumber[index] == 32)
-                {
-                    continue;
-                }
-
                 int token = (toAlphabetNumber[index] - 65); // minus by 65 to back to Alphabet code context
 
                 token = ((token - b) * a1 % 26);
