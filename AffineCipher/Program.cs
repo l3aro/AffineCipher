@@ -14,11 +14,11 @@ namespace AffineCipher
 
             data = Console.ReadLine();
 
-            string encrypt = AffineCipher.Encrypt(data);
+            string encrypt = AffineCipher.Encrypt(data, AffineCipher.GetEncryptKey());
 
             Console.WriteLine("Chuoi da ma hoa: {0}", encrypt);
 
-            string decrypt = AffineCipher.Decrypt(encrypt);
+            string decrypt = AffineCipher.Decrypt(encrypt, AffineCipher.GetDecryptKey());
 
             Console.WriteLine("Chuoi da giai ma: {0}", decrypt);
 

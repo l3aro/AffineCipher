@@ -43,19 +43,14 @@ namespace AffineCipher
             b = (byte)rnd.Next(1, 26);
         }
         
-        public byte Get_a()
+        public byte[] GetEncryptKey()
         {
-            return a;
+            return new byte[] { a, b };
         }            
         
-        public byte Get_a1()
+        public byte[] GetDecryptKey()
         {
-            return a1;
-        }            
-
-        public byte Get_b()
-        {
-            return b;
+            return new byte[] { a1, b };
         }
 
         // Remove characters not in Z26 alphabet
@@ -85,7 +80,7 @@ namespace AffineCipher
 
         }
 
-        public string Encrypt(string plaintext)
+        public string Encrypt(string plaintext, byte[] encryptKey)
         {
             plaintext = RemoveNonZ26(plaintext);
 
@@ -96,7 +91,7 @@ namespace AffineCipher
             {
                 byte token = (byte)(toAlphabetNumber[index] - 65); // minus by 65 to back to Alphabet code context
 
-                token = (byte)((a * token +b) % 26);
+                token = (byte)((encryptKey[0] * token + encryptKey[1]) % 26);
 
                 token += 65; // plus by 65 to back to ASCII character
 
@@ -109,7 +104,7 @@ namespace AffineCipher
             return result;
         }
 
-        public string Decrypt(string encrypted)
+        public string Decrypt(string encrypted, byte[] decryptKey)
         {
             encrypted = RemoveNonZ26(encrypted);
 
@@ -119,7 +114,7 @@ namespace AffineCipher
             {
                 int token = (toAlphabetNumber[index] - 65); // minus by 65 to back to Alphabet code context
 
-                token = ((token - b) * a1 % 26);
+                token = ((token - decryptKey[1]) * decryptKey[0] % 26);
 
                 if (token < 0)
                 {
